@@ -5,10 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pure German Cosmetic | B2B Wholesale Export from Germany (puregermancosmetic.eu)</title>
   <meta name="description" content="Direct B2B wholesale sourcing & export of 100% authentic German and European cosmetics, skincare, derma-cosmetics, salon haircare, and pharmacy brands from Oestrich-Winkel, Germany." />
-  <meta name="keywords" content="Pure German Cosmetic, puregermancosmetic.eu, German cosmetics wholesale, B2B cosmetic export Germany, BABOR, EUCERIN, SCHWARZKOPF, WELLA, DUREX, LA ROCHE-POSAY, BIODERMA, VICHY, Oestrich-Winkel" />
+  <meta name="keywords" content="Pure German Cosmetic, puregermancosmetic.eu, German cosmetics wholesale, B2B cosmetic export Germany, BABOR, EUCERIN, SCHWARZKOPF, WELLA, DUREX, LA ROCHE-POSAY, BIODERMA, VICHY, Oestrich-Winkel, Kosmetik Großhandel" />
   <meta name="author" content="Faiz Ahmed Bhagett - Pure German Cosmetic" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://puregermancosmetic.eu/" />
+  <link rel="alternate" hreflang="en" href="https://puregermancosmetic.eu/" />
+  <link rel="alternate" hreflang="de" href="https://puregermancosmetic.eu/?lang=de" />
+  <link rel="alternate" hreflang="x-default" href="https://puregermancosmetic.eu/" />
 
   <!-- Open Graph / Social & B2B Sharing SEO -->
   <meta property="og:type" content="website" />
@@ -67,8 +70,24 @@
     }
   </script>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Hide Google Translate top banner cleanly while keeping translation active */
+    .goog-te-banner-frame.skiptranslate,
+    .goog-te-gadget-icon {
+      display: none !important;
+    }
+    body {
+      top: 0 !important;
+    }
+    .goog-te-combo {
+      display: none !important;
+    }
+  </style>
 </head>
 <body class="bg-brand-cream text-slate-800 font-sans antialiased selection:bg-brand-gold selection:text-white">
+
+  <!-- Hidden Google Translate Container for All Other Languages -->
+  <div id="google_translate_element" class="hidden"></div>
 
   <!-- Top B2B Compliance & Trust Bar -->
   <div class="bg-brand-navy text-slate-200 text-xs py-2 px-4 border-b border-slate-800">
@@ -76,12 +95,12 @@
       <div class="flex items-center gap-4 flex-wrap justify-center">
         <span class="flex items-center gap-1.5">
           <span class="inline-block w-2 h-2 rounded-full bg-emerald-400"></span>
-          Direct B2B Export from Oestrich-Winkel, Germany
+          <span data-i18n="top_export">Direct B2B Export from Oestrich-Winkel, Germany</span>
         </span>
         <span class="hidden md:inline text-slate-500">|</span>
-        <span class="hidden md:inline">0% EU Export VAT (with Valid Export Proof)</span>
+        <span class="hidden md:inline" data-i18n="top_vat">0% EU Export VAT (with Valid Export Proof)</span>
         <span class="hidden lg:inline text-slate-500">|</span>
-        <span class="hidden lg:inline">Card &amp; Überweisung Export</span>
+        <span class="hidden lg:inline" data-i18n="top_pay">Card &amp; Überweisung Export</span>
       </div>
       <div class="flex items-center gap-4">
         <a href="mailto:info@puregermancosmetic.eu" class="hover:text-brand-goldLight transition">info@puregermancosmetic.eu</a>
@@ -92,13 +111,13 @@
 
   <!-- Sticky Navigation Header -->
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
-      <a href="#" class="flex items-center gap-3 group">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-3">
+      <a href="#" class="flex items-center gap-3 group shrink-0">
         <div class="w-11 h-11 rounded-xl bg-brand-navy flex items-center justify-center text-brand-gold font-serif font-bold text-xl shadow-md group-hover:bg-brand-slate transition">
           PG
         </div>
         <div>
-          <span class="block font-serif font-bold text-lg sm:text-xl text-brand-navy tracking-tight leading-none">
+          <span class="block font-serif font-bold text-base sm:text-xl text-brand-navy tracking-tight leading-none">
             Pure German Cosmetic
           </span>
           <span class="block text-[11px] uppercase tracking-widest text-slate-500 mt-1">
@@ -107,23 +126,95 @@
         </div>
       </a>
 
-      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-700">
-        <a href="#catalog" class="hover:text-brand-gold transition">Wholesale Catalog</a>
-        <a href="#orders-portal" class="hover:text-brand-gold transition">Client &amp; Admin Portal</a>
-        <a href="#export-process" class="hover:text-brand-gold transition">Payment &amp; Bank</a>
-        <button onclick="openLegalModal('impressum')" class="hover:text-brand-gold transition">Impressum &amp; Privacy</button>
+      <nav class="hidden lg:flex items-center gap-5 text-sm font-medium text-slate-700">
+        <a href="#catalog" class="hover:text-brand-gold transition" data-i18n="nav_catalog">Wholesale Catalog</a>
+        <a href="#orders-portal" class="hover:text-brand-gold transition" data-i18n="nav_portal">Client &amp; Admin Portal</a>
+        <a href="#export-process" class="hover:text-brand-gold transition" data-i18n="nav_payment">Payment &amp; Bank</a>
+        <button onclick="openLegalModal('impressum')" class="hover:text-brand-gold transition" data-i18n="nav_legal">Impressum &amp; Privacy</button>
       </nav>
 
-      <div class="flex items-center gap-2.5">
+      <!-- Front Language Switcher: English & German Prominent + All Languages Directly Below English -->
+      <div class="flex items-center gap-2">
+        <div class="relative flex flex-col items-stretch">
+          <div class="inline-flex items-center rounded-xl border border-slate-300 bg-slate-50 p-0.5 shadow-xs">
+            <button
+              type="button"
+              id="btn-lang-en"
+              onclick="setPrimaryLanguage('en')"
+              class="px-2.5 py-1 rounded-lg text-xs font-bold bg-brand-navy text-brand-goldLight transition"
+              title="English"
+            >
+              🇬🇧 EN
+            </button>
+            <button
+              type="button"
+              id="btn-lang-de"
+              onclick="setPrimaryLanguage('de')"
+              class="px-2.5 py-1 rounded-lg text-xs font-bold text-slate-700 hover:bg-white transition"
+              title="Deutsch"
+            >
+              🇩🇪 DE
+            </button>
+          </div>
+
+          <!-- All Languages Dropdown Directly Below English -->
+          <div class="relative mt-1">
+            <button
+              type="button"
+              id="more-lang-btn"
+              onclick="toggleAllLanguagesMenu()"
+              class="w-full flex items-center justify-between gap-1 px-2.5 py-1 rounded-lg bg-white hover:bg-slate-50 border border-slate-200 text-[11px] font-semibold text-slate-700 transition"
+            >
+              <span id="more-lang-label">🌐 All Languages</span>
+              <svg class="w-3 h-3 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+
+            <div
+              id="all-languages-menu"
+              class="hidden absolute right-0 mt-1.5 w-52 max-h-72 overflow-y-auto bg-white rounded-2xl shadow-2xl border border-slate-200 py-2 z-50 text-xs"
+            >
+              <div class="px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400">Primary Languages</div>
+              <button type="button" onclick="setPrimaryLanguage('en'); toggleAllLanguagesMenu(false)" class="w-full text-left px-3.5 py-1.5 hover:bg-amber-50 font-semibold text-brand-navy flex items-center justify-between">
+                <span>🇬🇧 English</span>
+                <span class="text-[10px] text-brand-gold font-bold">Default</span>
+              </button>
+              <button type="button" onclick="setPrimaryLanguage('de'); toggleAllLanguagesMenu(false)" class="w-full text-left px-3.5 py-1.5 hover:bg-amber-50 font-semibold text-brand-navy flex items-center justify-between">
+                <span>🇩🇪 Deutsch (German)</span>
+                <span class="text-[10px] text-brand-gold font-bold">Default</span>
+              </button>
+
+              <div class="my-1 border-t border-slate-100"></div>
+              <div class="px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400">All Other Languages</div>
+
+              <button type="button" onclick="selectAnyLanguage('ar', '🇸🇦 العربية (Arabic)')" class="w-full text-left px-3.5 py-1.5 hover:bg-slate-50 text-slate-700">🇸🇦 العربية (Arabic)</button>
+              <button type="button" onclick="selectAnyLanguage('ur', '🇵🇰 اردو (Urdu)')" class="w-full text-left px-3.5 py-1.5 hover:bg-slate-50 text-slate-700">🇵🇰 اردو (Urdu)</button>
+              <button type="button" onclick="selectAnyLanguage('fr', '🇫🇷 Français (French)')" class="w-full text-left px-3.5 py-1.5 hover:bg-slate-50 text-slate-700">🇫🇷 Français (French)</button>
+              <button type="button" onclick="selectAnyLanguage('es', '🇪🇸 Español (Spanish)')" class="w-full text-left px-3.5 py-1.5 hover:bg-slate-50 text-slate-700">🇪🇸 Español (Spanish)</button>
+              <button type="button" onclick="selectAnyLanguage('tr', '🇹🇷 Türkçe (Turkish)')" class="w-full text-left px-3.5 py-1.5 hover:bg-slate-50 text-slate-700">🇹🇷 Türkçe (Turkish)</button>
+              <button type="button" onclick="selectAnyLanguage('it', '🇮🇹 Italiano (Italian)')" class="w-full text-left px-3.5 py-1.5 hover:bg-slate-50 text-slate-700">🇮🇹 Italiano (Italian)</button>
+              <button type="button" onclick="selectAnyLanguage('nl', '🇳🇱 Nederlands (Dutch)')" class="w-full text-left px-3.5 py-1.5 hover:bg-slate-50 text-slate-700">🇳🇱 Nederlands (Dutch)</button>
+              <button type="button" onclick="selectAnyLanguage('pt', '🇵🇹 Português (Portuguese)')" class="w-full text-left px-3.5 py-1.5 hover:bg-slate-50 text-slate-700">🇵🇹 Português (Portuguese)</button>
+              <button type="button" onclick="selectAnyLanguage('ru', '🇷🇺 Русский (Russian)')" class="w-full text-left px-3.5 py-1.5 hover:bg-slate-50 text-slate-700">🇷🇺 Русский (Russian)</button>
+              <button type="button" onclick="selectAnyLanguage('zh-CN', '🇨🇳 中文 (Chinese)')" class="w-full text-left px-3.5 py-1.5 hover:bg-slate-50 text-slate-700">🇨🇳 中文 (Chinese)</button>
+              <button type="button" onclick="selectAnyLanguage('hi', '🇮🇳 हिन्दी (Hindi)')" class="w-full text-left px-3.5 py-1.5 hover:bg-slate-50 text-slate-700">🇮🇳 हिन्दी (Hindi)</button>
+              <button type="button" onclick="selectAnyLanguage('fa', '🇮🇷 فارسی (Persian)')" class="w-full text-left px-3.5 py-1.5 hover:bg-slate-50 text-slate-700">🇮🇷 فارسی (Persian)</button>
+              <button type="button" onclick="selectAnyLanguage('pl', '🇵🇱 Polski (Polish)')" class="w-full text-left px-3.5 py-1.5 hover:bg-slate-50 text-slate-700">🇵🇱 Polski (Polish)</button>
+              <button type="button" onclick="selectAnyLanguage('sv', '🇸🇪 Svenska (Swedish)')" class="w-full text-left px-3.5 py-1.5 hover:bg-slate-50 text-slate-700">🇸🇪 Svenska (Swedish)</button>
+            </div>
+          </div>
+        </div>
+
         <button onclick="toggleChatDrawer(true)" class="hidden sm:inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-brand-navy border border-slate-300 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition">
           <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-          <span>Live Desk Chat</span>
+          <span data-i18n="btn_chat">Live Desk Chat</span>
         </button>
         <button onclick="toggleBasket(true)" class="relative inline-flex items-center gap-2 bg-brand-navy hover:bg-brand-slate text-white px-4 py-2.5 rounded-xl text-sm font-medium shadow-md transition active:scale-95">
           <svg class="w-5 h-5 text-brand-goldLight" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
           </svg>
-          <span class="hidden sm:inline">Quote Basket</span>
+          <span class="hidden sm:inline" data-i18n="btn_basket">Quote Basket</span>
           <span id="basket-badge" class="inline-flex items-center justify-center px-2 py-0.5 text-xs font-bold leading-none text-brand-navy bg-brand-goldLight rounded-full">
             0
           </span>
@@ -139,19 +230,19 @@
       <div class="grid lg:grid-cols-12 gap-10 items-center">
         <div class="lg:col-span-6 space-y-5">
           <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-brand-goldLight text-xs font-semibold uppercase tracking-wider">
-            <span>🇩🇪 Official German B2B Sourcing Partner</span>
+            <span data-i18n="hero_badge">🇩🇪 Official German B2B Sourcing Partner</span>
           </div>
-          <h1 class="font-serif text-3xl sm:text-5xl font-bold leading-tight">
+          <h1 class="font-serif text-3xl sm:text-5xl font-bold leading-tight" data-i18n="hero_title">
             Authentic German &amp; European Cosmetics for Retail &amp; Salons
           </h1>
-          <p class="text-slate-300 text-base max-w-2xl leading-relaxed">
-            Direct wholesale supply from Germany worldwide. Pay easily via <strong>Card (Debit, Mastercard, Visa, Maestro)</strong> or <strong>Überweisung (Bank Transfer)</strong> with step-by-step payment confirmation.
+          <p class="text-slate-300 text-base max-w-2xl leading-relaxed" data-i18n="hero_desc">
+            Direct wholesale supply from Germany worldwide. Pay easily via Card (Debit, Mastercard, Visa, Maestro) or Überweisung (Bank Transfer) with step-by-step payment confirmation.
           </p>
           <div class="flex flex-wrap items-center gap-3 pt-2">
-            <a href="#catalog" class="px-6 py-3.5 rounded-xl bg-brand-gold hover:bg-brand-goldLight text-brand-navy font-semibold text-sm shadow-lg transition">
+            <a href="#catalog" class="px-6 py-3.5 rounded-xl bg-brand-gold hover:bg-brand-goldLight text-brand-navy font-semibold text-sm shadow-lg transition" data-i18n="hero_cta_catalog">
               Explore Wholesale Catalog
             </a>
-            <button onclick="toggleBasket(true)" class="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-medium text-sm transition">
+            <button onclick="toggleBasket(true)" class="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-medium text-sm transition" data-i18n="hero_cta_basket">
               Open Quote Basket
             </button>
           </div>
@@ -162,7 +253,7 @@
           <div class="bg-brand-slate/90 backdrop-blur-md border border-white/15 rounded-2xl p-4 sm:p-5 shadow-2xl space-y-3">
             <div class="flex items-center justify-between">
               <div>
-                <h2 class="font-serif text-lg font-bold text-white">Pure German Cosmetic — B2B Showcase</h2>
+                <h2 class="font-serif text-lg font-bold text-white" data-i18n="reel_heading">Pure German Cosmetic — B2B Showcase</h2>
                 <p id="hero-video-label" class="text-xs text-brand-goldLight">Reel 1: German Skincare &amp; Derma Care (Muted)</p>
               </div>
               <span class="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-[11px] font-semibold">
@@ -207,11 +298,11 @@
   <section id="catalog" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
       <div>
-        <span class="text-xs font-bold uppercase tracking-widest text-brand-gold">B2B Export Portfolio</span>
-        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-navy mt-1">
+        <span class="text-xs font-bold uppercase tracking-widest text-brand-gold" data-i18n="cat_kicker">B2B Export Portfolio</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-navy mt-1" data-i18n="cat_title">
           German &amp; European Cosmetic &amp; Pharmacy Lines
         </h2>
-        <p class="text-slate-600 text-sm sm:text-base mt-2 max-w-2xl">
+        <p class="text-slate-600 text-sm sm:text-base mt-2 max-w-2xl" data-i18n="cat_desc">
           Browse 36+ authentic wholesale SKUs across Skincare, Derma-Cosmetics, Salon Haircare, Makeup, and Body/Wellness.
         </p>
       </div>
@@ -250,7 +341,7 @@
 
     <div class="flex items-center justify-between text-xs text-slate-500 mb-6">
       <span id="showing-count">Showing wholesale items</span>
-      <span>*All prices are indicative B2B Net Export rates (0% EU VAT).</span>
+      <span data-i18n="cat_note">*All prices are indicative B2B Net Export rates (0% EU VAT).</span>
     </div>
 
     <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
@@ -261,10 +352,10 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-8">
         <div>
-          <span class="text-xs font-bold uppercase tracking-widest text-brand-gold">Role-Based Trade Workspace</span>
-          <h2 class="font-serif text-3xl font-bold text-brand-navy mt-1">Client &amp; Admin Portal</h2>
-          <p class="text-sm text-slate-600 mt-1">
-            <strong>Client:</strong> Track orders, card/Überweisung payment details &amp; chat with desk. <strong>Admin:</strong> Update order status, add products &amp; manage orders.
+          <span class="text-xs font-bold uppercase tracking-widest text-brand-gold" data-i18n="portal_kicker">Role-Based Trade Workspace</span>
+          <h2 class="font-serif text-3xl font-bold text-brand-navy mt-1" data-i18n="portal_title">Client &amp; Admin Portal</h2>
+          <p class="text-sm text-slate-600 mt-1" data-i18n="portal_desc">
+            Client: Track orders, card/Überweisung payment details &amp; chat with desk. Admin: Update order status, add products &amp; manage orders.
           </p>
         </div>
 
@@ -275,497 +366,4 @@
           <button onclick="switchRoleView('admin')" id="tab-admin-role" class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">
             Admin View
           </button>
-          <input type="text" id="order-search-id" placeholder="Search Order ID or Company..." class="px-3 py-2 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-brand-gold focus:outline-none" />
-        </div>
-      </div>
-
-      <!-- Admin Add Product Box (Visible only in Admin View) -->
-      <div id="admin-controls-box" class="hidden mb-8 p-5 rounded-2xl bg-brand-navy text-white space-y-4">
-        <div class="flex items-center justify-between">
-          <h3 class="font-serif text-lg font-bold text-brand-goldLight">Admin: Add New Wholesale Product</h3>
-          <span class="text-xs text-slate-300">Updates catalog immediately</span>
-        </div>
-        <form onsubmit="adminAddProduct(event)" class="grid sm:grid-cols-2 lg:grid-cols-5 gap-3 text-xs">
-          <input type="text" id="adm-brand" required placeholder="Brand (e.g. DUREX / NIVEA)" class="px-3 py-2 rounded-xl text-slate-900" />
-          <input type="text" id="adm-name" required placeholder="Product Name" class="px-3 py-2 rounded-xl text-slate-900" />
-          <select id="adm-cat" class="px-3 py-2 rounded-xl text-slate-900 bg-white">
-            <option value="Skincare & Ampoules">Skincare &amp; Ampoules</option>
-            <option value="Derma-Cosmetics">Derma-Cosmetics</option>
-            <option value="Salon Haircare">Salon Haircare</option>
-            <option value="Makeup & Studio">Makeup &amp; Studio</option>
-            <option value="Body, Men & Wellness">Body, Men &amp; Wellness</option>
-          </select>
-          <input type="number" id="adm-price" step="0.01" min="0.1" required placeholder="EUR Price (e.g. 12.50)" class="px-3 py-2 rounded-xl text-slate-900" />
-          <button type="submit" class="px-4 py-2 rounded-xl bg-brand-gold hover:bg-brand-goldLight text-brand-navy font-bold transition">
-            + Add Product
-          </button>
-        </form>
-      </div>
-
-      <div id="orders-list-container" class="space-y-4"></div>
-    </div>
-  </section>
-
-  <!-- Payment Methods (Card + Überweisung) & Proforma Bank Section -->
-  <section id="export-process" class="bg-brand-cream border-t border-slate-200 py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold uppercase tracking-wider text-brand-gold">Option 1 • Card Checkout</span>
-            <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold">Debit / Mastercard / Visa / Maestro</span>
-          </div>
-          <h3 class="font-serif text-xl font-bold text-brand-navy">Card Payment with Step Confirmation</h3>
-          <p class="text-xs text-slate-600 leading-relaxed">
-            Select card type (Debit, Mastercard, Visa, Maestro), enter cardholder name, card number, expiry &amp; security code, click Payment, confirm payment, and complete your order.
-          </p>
-        </div>
-
-        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold uppercase tracking-wider text-brand-gold">Option 2 • Überweisung</span>
-            <span class="px-2.5 py-1 rounded-full bg-brand-navy text-brand-goldLight text-[11px] font-bold">Bank Transfer</span>
-          </div>
-          <h3 class="font-serif text-xl font-bold text-brand-navy">Überweisung (Bank Transfer) with Confirmation</h3>
-          <p class="text-xs text-slate-600 leading-relaxed">
-            Enter your account holder name and account/IBAN details, transfer to our official account below, and click Confirm to record your payment and order.
-          </p>
-        </div>
-      </div>
-
-      <!-- Proforma Bank Details Card -->
-      <div class="bg-brand-navy text-white rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-lg">
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-white/10 pb-6">
-          <div>
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-gold/20 text-brand-goldLight text-[11px] font-bold uppercase tracking-wider mb-2">
-              <span>Proforma Invoice &amp; Überweisung Account</span>
-            </div>
-            <h3 class="font-serif text-2xl font-bold text-white">B2B Receiver Bank Details</h3>
-            <p class="text-xs sm:text-sm text-slate-300 mt-1">
-              Official account details for Überweisung / international bank transfers.
-            </p>
-          </div>
-          <button type="button" onclick="copyWiseBankDetails()" class="self-start lg:self-center px-4 py-2.5 rounded-xl bg-brand-gold hover:bg-brand-goldLight text-brand-navy text-xs font-bold transition shrink-0">
-            Copy Proforma Bank Block
-          </button>
-        </div>
-
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-6 text-xs">
-          <div class="bg-white/5 border border-white/10 rounded-2xl p-4">
-            <span class="block text-[10px] uppercase tracking-wider text-slate-400">Name</span>
-            <span class="block font-bold text-white text-sm mt-1">FAIZ AHMED BHAGETT</span>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-2xl p-4">
-            <span class="block text-[10px] uppercase tracking-wider text-slate-400">IBAN</span>
-            <span class="block font-mono font-bold text-brand-goldLight text-sm mt-1">BE81 9670 2429 4624</span>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-2xl p-4">
-            <span class="block text-[10px] uppercase tracking-wider text-slate-400">Swift / BIC</span>
-            <span class="block font-mono font-bold text-white text-sm mt-1">TRWIBEB1XXX</span>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-2xl p-4 sm:col-span-2">
-            <span class="block text-[10px] uppercase tracking-wider text-slate-400">Address</span>
-            <span class="block font-semibold text-white text-sm mt-1">Wise, Rue du Trône 100, 3rd floor, Brussels, 1050, Belgium</span>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-2xl p-4">
-            <span class="block text-[10px] uppercase tracking-wider text-slate-400">Accepted Payment Modes</span>
-            <span class="block font-semibold text-brand-goldLight text-sm mt-1">Card &amp; Überweisung</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-slate-900 text-slate-300 pt-14 pb-8 border-t border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid md:grid-cols-3 gap-10 pb-10 border-b border-slate-800">
-        <div>
-          <div class="flex items-center gap-2.5 mb-4">
-            <div class="w-9 h-9 rounded-lg bg-brand-gold text-brand-navy font-serif font-bold flex items-center justify-center">PG</div>
-            <span class="font-serif font-bold text-lg text-white">Pure German Cosmetic</span>
-          </div>
-          <p class="text-xs text-slate-400 leading-relaxed">
-            B2B Cosmetic Sourcing &amp; International Export Desk.<br />
-            Domain: puregermancosmetic.eu
-          </p>
-        </div>
-
-        <div>
-          <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Contact &amp; Location</h4>
-          <ul class="space-y-2 text-xs text-slate-400">
-            <li><strong>Contact:</strong> Faiz Ahmed Bhagett</li>
-            <li><strong>Address:</strong> Kirchstr. 42, 65375 Oestrich-Winkel, Deutschland</li>
-            <li><strong>Phone / WhatsApp:</strong> +49 172 1885722</li>
-            <li><strong>Email:</strong> info@puregermancosmetic.eu</li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Legal &amp; B2B Notice</h4>
-          <ul class="space-y-2 text-xs">
-            <li><button onclick="openLegalModal('impressum')" class="text-slate-300 hover:text-brand-goldLight underline">Impressum (§ 5 DDG)</button></li>
-            <li><button onclick="openLegalModal('privacy')" class="text-slate-300 hover:text-brand-goldLight underline">Datenschutzerklärung (GDPR)</button></li>
-            <li><button onclick="openLegalModal('b2bterms')" class="text-slate-300 hover:text-brand-goldLight underline">B2B Export Terms</button></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
-        <p>&copy; 2026 Pure German Cosmetic (puregermancosmetic.eu). All rights reserved.</p>
-        <p>Oestrich-Winkel, Germany</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Direct Human Chat Messenger Widget (No Bot) -->
-  <button onclick="toggleChatDrawer(true)" class="fixed bottom-5 right-5 z-40 px-4 py-3 rounded-2xl bg-brand-navy hover:bg-brand-slate text-white shadow-2xl border border-brand-gold/40 flex items-center gap-2.5 text-xs font-bold transition active:scale-95">
-    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-    <span>Message Company Desk</span>
-  </button>
-
-  <div id="chat-drawer" class="fixed inset-0 z-50 hidden">
-    <div onclick="toggleChatDrawer(false)" class="absolute inset-0 bg-black/50"></div>
-    <div class="fixed bottom-5 right-5 w-full max-w-md max-h-[85dvh] bg-white rounded-3xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden">
-      <div class="px-5 py-4 bg-brand-navy text-white flex items-center justify-between shrink-0">
-        <div>
-          <h3 class="font-serif text-base font-bold">Pure German Cosmetic — Human Desk</h3>
-          <p class="text-[11px] text-emerald-300">Direct buyer-to-company messenger (no automated bot)</p>
-        </div>
-        <button onclick="toggleChatDrawer(false)" class="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-bold">&times;</button>
-      </div>
-
-      <div class="px-4 py-2.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between text-xs">
-        <span class="text-slate-600">Sender Role:</span>
-        <select id="chat-sender-role" onchange="renderChatMessages()" class="px-2.5 py-1 rounded-lg border border-slate-300 bg-white font-semibold text-xs">
-          <option value="Buyer">Buyer / Client</option>
-          <option value="Company Team (Admin)">Company Team (Admin)</option>
-        </select>
-      </div>
-
-      <div id="chat-messages-box" class="flex-1 min-h-0 overflow-y-auto p-4 space-y-3 bg-brand-cream/50"></div>
-
-      <form onsubmit="sendChatMessage(event)" class="p-3.5 bg-white border-t border-slate-200 space-y-2 shrink-0">
-        <div class="grid grid-cols-2 gap-2">
-          <input type="text" id="chat-sender-name" required placeholder="Your Name" class="px-3 py-1.5 border border-slate-300 rounded-xl text-xs" />
-          <input type="text" id="chat-sender-company" placeholder="Company (optional)" class="px-3 py-1.5 border border-slate-300 rounded-xl text-xs" />
-        </div>
-        <div class="flex gap-2">
-          <input type="text" id="chat-input" required placeholder="Type your message to the company team..." class="flex-1 px-3 py-2 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-brand-gold focus:outline-none" />
-          <button type="submit" class="px-4 py-2 rounded-xl bg-brand-navy hover:bg-brand-slate text-white text-xs font-bold transition">
-            Send
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- Product Video & Spec Modal (Muted Permanently) -->
-  <div id="product-modal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-black/75 backdrop-blur-sm p-4 flex items-center justify-center">
-    <div class="bg-white rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl border border-slate-200 my-8">
-      <div class="flex items-center justify-between px-6 py-4 bg-brand-navy text-white">
-        <div>
-          <span id="modal-brand" class="text-xs font-bold uppercase tracking-widest text-brand-goldLight">BRAND</span>
-          <h3 id="modal-title" class="font-serif text-xl font-bold">Product Title</h3>
-        </div>
-        <button onclick="closeProductModal()" class="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
-      </div>
-
-      <div class="grid md:grid-cols-12 gap-6 p-6">
-        <div class="md:col-span-6 space-y-4">
-          <div class="relative rounded-2xl overflow-hidden bg-slate-950 aspect-video shadow-inner border border-slate-300">
-            <video id="modal-video" class="w-full h-full object-cover" controls autoplay loop muted playsinline controlsList="nodownload"></video>
-            <div class="pointer-events-none absolute top-3 left-3 right-3 flex items-center justify-between gap-2">
-              <span class="px-2.5 py-1 rounded-md bg-brand-navy/95 border border-brand-gold/50 text-brand-goldLight text-[10px] font-bold tracking-wide">PureGermanCosmetic.eu</span>
-              <span id="modal-origin-badge" class="px-2.5 py-1 rounded-md bg-white/95 text-brand-navy text-[10px] font-bold">Made in Germany</span>
-            </div>
-          </div>
-
-          <div class="flex items-center justify-between gap-3 bg-slate-900 text-white px-3.5 py-2.5 rounded-xl border border-slate-700">
-            <div class="truncate">
-              <p id="modal-video-caption" class="text-xs font-semibold truncate">Formulation</p>
-              <p id="modal-hs-code" class="text-[10px] text-brand-goldLight truncate">HS Code</p>
-            </div>
-            <div class="flex items-center gap-1.5 shrink-0">
-              <button type="button" onclick="toggleModalVideoPlay()" id="video-play-btn" class="px-2.5 py-1.5 rounded-lg bg-brand-gold text-brand-navy text-[11px] font-bold">Pause</button>
-              <span class="px-2.5 py-1.5 rounded-lg bg-white/10 text-slate-300 text-[11px] font-semibold">🔇 Muted</span>
-            </div>
-          </div>
-
-          <div class="bg-brand-cream rounded-2xl p-4 border border-slate-200 space-y-2 text-xs">
-            <h4 class="font-bold text-brand-navy uppercase tracking-wider">B2B Export Specs</h4>
-            <div class="grid grid-cols-2 gap-2 text-slate-600">
-              <div><span class="font-semibold text-slate-800">Unit Size:</span> <span id="modal-size">50 ml</span></div>
-              <div><span class="font-semibold text-slate-800">MOQ:</span> <span id="modal-moq">24 units</span></div>
-              <div><span class="font-semibold text-slate-800">Indicative Price:</span> <span id="modal-price" class="text-brand-navy font-bold">€18.50 / unit</span></div>
-              <div><span class="font-semibold text-slate-800">Shelf Life:</span> <span>24–36 Months</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="md:col-span-6 flex flex-col justify-between space-y-4">
-          <div class="space-y-3">
-            <div>
-              <span class="text-xs font-semibold text-brand-gold uppercase">Product Overview</span>
-              <p id="modal-desc" class="text-sm text-slate-700 leading-relaxed mt-1"></p>
-            </div>
-            <div>
-              <span class="text-xs font-semibold text-brand-gold uppercase">Key Active Ingredients</span>
-              <p id="modal-ingredients" class="text-xs text-slate-600 leading-relaxed mt-1 bg-slate-50 p-3 rounded-xl border border-slate-200"></p>
-            </div>
-            <div>
-              <span class="text-xs font-semibold text-brand-gold uppercase">Target B2B Channel</span>
-              <p id="modal-channel" class="text-xs font-medium text-slate-800 mt-1"></p>
-            </div>
-          </div>
-
-          <div class="pt-4 border-t border-slate-200 flex items-center gap-3">
-            <div class="w-28">
-              <label class="block text-[10px] font-bold uppercase text-slate-500 mb-1">Order Qty</label>
-              <input type="number" id="modal-qty-input" min="1" value="24" class="w-full px-3 py-2.5 border border-slate-300 rounded-xl text-sm font-bold text-center" />
-            </div>
-            <button id="modal-add-btn" class="flex-1 mt-4 py-3 px-5 rounded-xl bg-brand-navy hover:bg-brand-slate text-white font-semibold text-sm shadow-md transition">
-              + Add to Quote Basket
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Slide-Over Quote Basket Drawer with Step-by-Step Card & Überweisung Checkout -->
-  <div id="basket-drawer" class="fixed inset-0 z-50 hidden">
-    <div onclick="toggleBasket(false)" class="absolute inset-0 bg-black/60 backdrop-blur-xs"></div>
-    <div class="absolute right-0 top-0 bottom-0 w-full max-w-lg max-h-[100dvh] bg-white shadow-2xl flex flex-col">
-      <div class="px-6 py-4 bg-brand-navy text-white flex items-center justify-between shrink-0">
-        <div>
-          <h3 class="font-serif text-xl font-bold">B2B Quote &amp; Payment Checkout</h3>
-          <p class="text-xs text-slate-300">Card (Debit, Mastercard, Visa, Maestro) &amp; Überweisung</p>
-        </div>
-        <button onclick="toggleBasket(false)" class="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
-      </div>
-
-      <div class="flex-1 min-h-0 overflow-y-auto p-6 space-y-5">
-        <div id="basket-items-container" class="space-y-3"></div>
-
-        <div id="basket-summary-box" class="hidden bg-brand-cream border border-slate-200 rounded-2xl p-4 space-y-2">
-          <div class="flex justify-between text-xs text-slate-600">
-            <span>Total Selected SKUs:</span>
-            <span id="summary-skus" class="font-bold text-slate-800">0</span>
-          </div>
-          <div class="flex justify-between text-xs text-slate-600">
-            <span>Total Units:</span>
-            <span id="summary-units" class="font-bold text-slate-800">0 pcs</span>
-          </div>
-          <div class="flex justify-between text-sm font-bold text-brand-navy pt-2 border-t border-slate-200">
-            <span>Total Amount (Net):</span>
-            <span id="summary-total">€0.00</span>
-          </div>
-        </div>
-
-        <!-- Step 1 Form: Buyer & Payment Selection -->
-        <form id="order-submit-form" onsubmit="beginPaymentStep(event)" class="hidden space-y-3 pt-2 border-t border-slate-200">
-          <h4 class="font-bold text-brand-navy text-sm">1. Buyer Information</h4>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div>
-              <label class="block text-xs font-medium text-slate-700 mb-1">Company / Store Name *</label>
-              <input type="text" id="buyer-company" required placeholder="e.g., Salon / Retail Store" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-brand-gold focus:outline-none" />
-            </div>
-            <div>
-              <label class="block text-xs font-medium text-slate-700 mb-1">Contact Person *</label>
-              <input type="text" id="buyer-name" required placeholder="Full Name" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-brand-gold focus:outline-none" />
-            </div>
-            <div>
-              <label class="block text-xs font-medium text-slate-700 mb-1">Buyer Email *</label>
-              <input type="email" id="buyer-email" required placeholder="buyer@company.com" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-brand-gold focus:outline-none" />
-            </div>
-            <div>
-              <label class="block text-xs font-medium text-slate-700 mb-1">Country &amp; City / Port *</label>
-              <input type="text" id="buyer-city" required placeholder="e.g., Germany / UAE / Pakistan" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-brand-gold focus:outline-none" />
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div>
-              <label class="block text-xs font-medium text-slate-700 mb-1">Payment Type *</label>
-              <select id="buyer-payment-type" onchange="handlePaymentTypeChange()" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-xs bg-white font-semibold focus:ring-2 focus:ring-brand-gold focus:outline-none">
-                <option value="Card">Card Payment (Debit / Mastercard / Visa / Maestro)</option>
-                <option value="Ueberweisung">Überweisung (Bank Transfer)</option>
-              </select>
-            </div>
-            <div>
-              <label class="block text-xs font-medium text-slate-700 mb-1">Preferred Incoterm</label>
-              <select id="buyer-incoterm" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-xs bg-white focus:ring-2 focus:ring-brand-gold focus:outline-none">
-                <option value="CIF Air Cargo">CIF Air Cargo</option>
-                <option value="CIF Sea Cargo">CIF Sea Cargo</option>
-                <option value="DDP Door-to-Door">DDP Door-to-Door</option>
-                <option value="EXW Germany">EXW Germany</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- CARD INPUTS: Card Type -> Cardholder Name -> Card Number -> Expiry -> Security Number -->
-          <div id="card-payment-fields" class="p-4 rounded-2xl bg-amber-50 border border-amber-200 space-y-3 text-xs">
-            <div class="font-bold text-brand-navy">2. Card Payment Details</div>
-
-            <div>
-              <label class="block text-[11px] font-semibold text-slate-700 mb-1">Select Card *</label>
-              <select id="card-brand-select" class="w-full px-3 py-2 bg-white border border-amber-300 rounded-xl text-xs font-semibold text-slate-900">
-                <option value="Debit Card">Debit Card</option>
-                <option value="Mastercard">Mastercard</option>
-                <option value="Visa">Visa</option>
-                <option value="Maestro">Maestro</option>
-              </select>
-            </div>
-
-            <div>
-              <label class="block text-[11px] font-semibold text-slate-700 mb-1">Cardholder Name *</label>
-              <input type="text" id="card-holder-input" placeholder="Name on Card" class="w-full px-3 py-2 bg-white border border-amber-300 rounded-xl text-xs text-slate-900" />
-            </div>
-
-            <div>
-              <label class="block text-[11px] font-semibold text-slate-700 mb-1">Card Number *</label>
-              <input type="text" id="card-number-input" maxlength="23" placeholder="1234 5678 9012 3456" class="w-full px-3 py-2 bg-white border border-amber-300 rounded-xl text-xs font-mono text-slate-900" />
-            </div>
-
-            <div class="grid grid-cols-2 gap-3">
-              <div>
-                <label class="block text-[11px] font-semibold text-slate-700 mb-1">Expiry (MM/YY) *</label>
-                <input type="text" id="card-expiry-input" maxlength="5" placeholder="12/28" class="w-full px-3 py-2 bg-white border border-amber-300 rounded-xl text-xs font-mono text-slate-900" />
-              </div>
-              <div>
-                <label class="block text-[11px] font-semibold text-slate-700 mb-1">Security Number (CVV/CVC) *</label>
-                <input type="password" id="card-cvv-input" maxlength="4" placeholder="123" class="w-full px-3 py-2 bg-white border border-amber-300 rounded-xl text-xs font-mono text-slate-900" />
-              </div>
-            </div>
-          </div>
-
-          <!-- ÜBERWEISUNG INPUTS: Client Name + Client Account Detail + Receiver Account -->
-          <div id="ueberweisung-payment-fields" class="hidden p-4 rounded-2xl bg-slate-50 border border-slate-300 space-y-3 text-xs">
-            <div class="font-bold text-brand-navy">2. Überweisung (Bank Transfer) Details</div>
-
-            <div>
-              <label class="block text-[11px] font-semibold text-slate-700 mb-1">Your Name (Sender Account Holder) *</label>
-              <input type="text" id="transfer-sender-name" placeholder="Your Full Name / Company" class="w-full px-3 py-2 bg-white border border-slate-300 rounded-xl text-xs text-slate-900" />
-            </div>
-
-            <div>
-              <label class="block text-[11px] font-semibold text-slate-700 mb-1">Your Account Detail (Sender IBAN / Account No.) *</label>
-              <input type="text" id="transfer-sender-account" placeholder="Your IBAN or Bank Account Number" class="w-full px-3 py-2 bg-white border border-slate-300 rounded-xl text-xs font-mono text-slate-900" />
-            </div>
-
-            <div class="p-3 rounded-xl bg-brand-navy text-white space-y-1 text-[11px]">
-              <div class="font-bold text-brand-goldLight">Transfer To (Receiver Account):</div>
-              <div><strong>Name:</strong> FAIZ AHMED BHAGETT</div>
-              <div><strong>IBAN:</strong> <span class="font-mono">BE81 9670 2429 4624</span></div>
-              <div><strong>Swift/BIC:</strong> <span class="font-mono">TRWIBEB1XXX</span></div>
-              <div><strong>Address:</strong> Wise, Rue du Trône 100, 3rd floor, Brussels, 1050, Belgium</div>
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-xs font-medium text-slate-700 mb-1">Additional Notes (Optional)</label>
-            <textarea id="buyer-notes" rows="2" placeholder="Optional order or delivery notes..." class="w-full px-3 py-2 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-brand-gold focus:outline-none"></textarea>
-          </div>
-
-          <button id="proceed-payment-btn" type="submit" class="w-full py-3 px-4 rounded-xl bg-brand-navy hover:bg-brand-slate text-white font-semibold text-sm shadow-md transition">
-            Proceed to Payment Confirmation
-          </button>
-        </form>
-
-        <!-- Step 2 Box: Payment Click -> Payment Confirm -> Order Complete -->
-        <div id="payment-confirm-step-box" class="hidden p-4 rounded-2xl bg-brand-cream border-2 border-brand-gold space-y-3 text-xs">
-          <div class="flex items-center justify-between">
-            <span class="font-bold uppercase tracking-wider text-brand-navy">3. Confirm Payment &amp; Complete Order</span>
-            <span id="confirm-step-badge" class="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 font-bold">Awaiting Confirmation</span>
-          </div>
-          <div id="payment-review-details" class="p-3 rounded-xl bg-white border border-slate-200 space-y-1 text-slate-700"></div>
-          <div class="flex gap-2 pt-1">
-            <button type="button" onclick="backToPaymentEdit()" class="px-3.5 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-800 font-semibold text-xs transition">
-              Back / Edit
-            </button>
-            <button type="button" onclick="confirmPaymentAndCompleteOrder()" class="flex-1 py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-md transition">
-              Confirm Payment &amp; Complete Order
-            </button>
-          </div>
-        </div>
-
-        <!-- Final Completed Order Box -->
-        <div id="order-confirmation-box" class="hidden bg-emerald-50 border border-emerald-200 rounded-2xl p-4 space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold uppercase text-emerald-800">Payment Confirmed • Order Complete</span>
-            <span id="confirmed-order-id" class="font-mono text-xs font-bold bg-emerald-700 text-white px-2.5 py-0.5 rounded-lg"></span>
-          </div>
-          <p id="confirmed-order-summary" class="text-xs text-emerald-900 leading-relaxed"></p>
-          <div class="pt-2 border-t border-emerald-200 flex flex-wrap gap-2">
-            <button type="button" onclick="triggerVerificationAlert('email')" class="px-3 py-2 rounded-xl bg-brand-navy text-white text-xs font-semibold hover:bg-brand-slate transition">
-              Send Email Alert
-            </button>
-            <button type="button" onclick="triggerVerificationAlert('whatsapp')" class="px-3 py-2 rounded-xl bg-emerald-600 text-white text-xs font-semibold hover:bg-emerald-500 transition">
-              Send WhatsApp Alert
-            </button>
-            <button type="button" onclick="scrollToOrdersSection()" class="px-3 py-2 rounded-xl bg-white border border-emerald-300 text-emerald-900 text-xs font-semibold hover:bg-emerald-100 transition">
-              View Order in Portal
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Legal Modal -->
-  <div id="legal-modal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-black/75 backdrop-blur-sm p-4 flex items-center justify-center">
-    <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl border border-slate-200 my-8">
-      <div class="px-6 py-4 bg-brand-navy text-white flex items-center justify-between">
-        <h3 id="legal-modal-title" class="font-serif text-lg font-bold">Impressum</h3>
-        <button onclick="closeLegalModal()" class="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
-      </div>
-      <div class="p-6 text-sm text-slate-700 space-y-4 max-h-[70vh] overflow-y-auto" id="legal-modal-content"></div>
-      <div class="px-6 py-3 bg-slate-50 border-t border-slate-200 flex justify-end">
-        <button onclick="closeLegalModal()" class="px-4 py-1.5 rounded-lg bg-brand-navy text-white text-xs font-semibold">Close</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Toast -->
-  <div id="toast" class="fixed bottom-20 right-5 z-50 hidden bg-brand-navy text-white px-5 py-3 rounded-xl shadow-xl border border-brand-gold/40 text-sm font-medium flex items-center gap-2.5">
-    <span class="w-2.5 h-2.5 rounded-full bg-brand-goldLight"></span>
-    <span id="toast-msg">Updated</span>
-  </div>
-
-  <script>
-    function copyWiseBankDetails() {
-      const bankText = [
-        "Pure German Cosmetic - Überweisung / Bank Details",
-        "Name: FAIZ AHMED BHAGETT",
-        "IBAN: BE81 9670 2429 4624",
-        "Swift/BIC: TRWIBEB1XXX",
-        "Address: Wise, Rue du Trône 100, 3rd floor, Brussels, 1050, Belgium"
-      ].join("\n");
-
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(bankText).then(() => {
-          if (typeof showToast === "function") {
-            showToast("Bank transfer details copied!");
-          } else {
-            alert("Bank transfer details copied!");
-          }
-        });
-      }
-    }
-  </script>
-  <script src="app.js"></script>
-</body>
-</html>
+          <input type="text" id="order-search-id" placeholder="Search Order ID or Company..." class="px-3 py-2 border border-slate-300 rounded-xl text-xs focus:ring
